@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="container-page" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,8 @@
     <img class="promo-close-icon" src="/assets/home-page/Frame.png" alt="Close icon"/>
 </header>
 <header class="container-header">
-    <img class="shop-logo" src="/assets/home-page/SHOP.CO.png" alt="company-name"/>
+    <img class="menu-icon" src="/assets/home-page/menu-icon.png" alt="menu"/>
+    <h1 class="shop-logo">SHOP.CO</h1>
     <nav class="menu">
         <ul class="menu-list">
             <li class="menu-item"><a href="#">Shop <img src="/assets/home-page/arrow-donw.png"> </a></li>
@@ -25,16 +26,20 @@
             <li class="menu-item"><a href="#">Brands</a></li>
         </ul>
     </nav>
-    <input class="search-input" placeholder="Search for products..."/>
     <section class="user-container">
+        <input class="search-input" placeholder="Search for products..."/>
+        <img src="assets/home-page/black-search.png" alt="black-search-image"/>
         <img src="assets/home-page/shopping-car.png" alt="shopping-car"/>
         <img src="assets/home-page/profile.png" alt="profile"/>
     </section>
 </header>
 <main class="default-container">
-    <section class="texts-banner">
-        <img src="assets/home-page/FIND%20CLOTHES%20THAT%20MATCHES%20YOUR%20STYLE.png" alt="font-title"/>
-        <h3 class="collection-description">Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</h3>
+    <section class="container-upper-banner">
+        <h1 class="banner-title">FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+        <h3 class="collection-description">
+            Browse through our diverse range of meticulously crafted garments,
+            designed to bring out your individuality and cater to your sense of style.
+        </h3>
         <button class="container-button" aria-label="Shop Now">
             Shop Now
         </button>
@@ -53,16 +58,38 @@
             </li>
         </ul>
     </section>
-</main>
-    <section class="brands-banner">
-        <lu class="container-box">
-            <img src="assets/home-page/versace.png" alt="Versace"/>
-            <img src="assets/home-page/zara.png" alt="Zara"/>
-            <img src="assets/home-page/gucci.png" alt="Gucci"/>
-            <img src="assets/home-page/prada.png" alt="Prada"/>
-            <img src="assets/home-page/calvin-klein.png" alt="Calvin Klein"/>
-        </lu>
+    <section class="container-banner-image">
+        <section class="container-box-banner">
+            <img class="right-up-star" src="assets/home-page/black-start.png" alt="Star icon"/>
+            <img class="left-center-star" src="assets/home-page/black-start.png" alt="Star icon"/>
+        </section>
     </section>
+</main>
+<section class="brands-banner">
+    <ul class="container-box">
+        <img class="companies-image" src="assets/home-page/versace.png" alt="Versace"/>
+        <img class="companies-image" src="assets/home-page/zara.png" alt="Zara"/>
+        <img class="companies-image" src="assets/home-page/gucci.png" alt="Gucci"/>
+        <img class="companies-image" src="assets/home-page/prada.png" alt="Prada"/>
+        <img class="companies-image" src="assets/home-page/calvin-klein.png" alt="Calvin Klein"/>
+    </ul>
+</section>
+<section class="container-arrivals">
+    <h1 class="clothes-section-type">NEW ARRIVALS</h1>
+    <section class="cards-container arrivals"></section>
+</section>
+<button class="view-all-button">
+    View All
+</button>
+
+<section class="container-top-selling">
+    <h1 class="clothes-section-type">TOP SELLING</h1>
+    <section class="cards-container top-selling"></section>
+</section>
+<script type="module" src="./dist/main.js"></script>
+<button class="view-all-button">
+    View All
+</button>
 
 </body>
 </html>
