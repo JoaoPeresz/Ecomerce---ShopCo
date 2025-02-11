@@ -1,7 +1,7 @@
 "use strict";
 const arrivals = [
     {
-        image: "/assets/home-page/T-shirt%20with%20Tape.png",
+        image: "assets/home-page/T-shirt%20with%20Tape.png",
         title: "T-shirt with Tape Details",
         ratingImage: "assets/home-page/rating-4.5.png",
         rating: "4.5/5",
@@ -10,7 +10,7 @@ const arrivals = [
         discount: ""
     },
     {
-        image: "/assets/home-page/Skinny%20Fit%20Jeans.png",
+        image: "assets/home-page/Skinny%20Fit%20Jeans.png",
         title: "Skinny Fit Jeans",
         ratingImage: "assets/home-page/rating-3.5.png",
         rating: "3.5/5",
@@ -19,7 +19,7 @@ const arrivals = [
         discount: "-20%"
     },
     {
-        image: "/assets/home-page/Checked%20Shirt.png",
+        image: "assets/home-page/Checked%20Shirt.png",
         title: "Checkered Shirt",
         ratingImage: "assets/home-page/rating-4.5.png",
         rating: "4.5/5",
@@ -28,7 +28,7 @@ const arrivals = [
         discount: ""
     },
     {
-        image: "/assets/home-page/Sleeve%20Striped.png",
+        image: "assets/home-page/Sleeve%20Striped.png",
         title: "Sleeve Striped T-shirt",
         ratingImage: "assets/home-page/rating-4.5.png",
         rating: "4.5/5",
@@ -106,4 +106,35 @@ const renderCards = (products, containerSelector) => {
 document.addEventListener("DOMContentLoaded", () => {
     renderCards(arrivals, ".cards-container.arrivals");
     renderCards(topSelling, ".cards-container.top-selling");
+});
+const topics = [
+    {
+        image: "../assets/home-page/topic-casual.png",
+        topic: "Casual"
+    },
+    {
+        image: "../assets/home-page/topic-formal.png",
+        topic: "Formal"
+    },
+    {
+        image: "../assets/home-page/topic-party.png",
+        topic: "Party"
+    },
+    {
+        image: "../assets/home-page/topic-gym.png",
+        topic: "Gym"
+    },
+];
+const renderTopics = () => {
+    const container = document.querySelector(".card-topics-browse");
+    if (container) {
+        container.innerHTML = topics.map((topic) => `
+            <section class="container-topics">
+                <img src=${topic.image}/>
+            </section>        
+        `).join("");
+    }
+};
+document.addEventListener("DOMContentLoaded", () => {
+    renderTopics();
 });
