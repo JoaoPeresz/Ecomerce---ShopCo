@@ -109,19 +109,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const topics = [
     {
-        image: "..assets/home-page/topic-casual.png",
+        image: "assets/home-page/topic-casual.png",
         topic: "Casual"
     },
     {
-        image: "..assets/home-page/topic-formal.png",
+        image: "assets/home-page/topic-formal.png",
         topic: "Formal"
     },
     {
-        image: "..assets/home-page/topic-party.png",
+        image: "assets/home-page/topic-party.png",
         topic: "Party"
     },
     {
-        image: "..assets/home-page/topic-gym.png",
+        image: "assets/home-page/topic-gym.png",
         topic: "Gym"
     },
 ];
