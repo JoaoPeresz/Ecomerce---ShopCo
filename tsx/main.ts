@@ -198,7 +198,7 @@ const renderGoodReviews = () => {
     if (container) {
         container.innerHTML = reviews.map((review) => `
             <section class="container-box-reviews">
-                <img src=${review.rating}/>
+                <img src=${review.rating} alt="rating"/>
                 <section class="data-reviewr">
                     <h1 class="title-reviewr">${review.name}</h1>
                     <img src="assets/home-page/checked.png"/>
