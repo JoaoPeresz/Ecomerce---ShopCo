@@ -279,6 +279,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
+
     .cards-container::-webkit-scrollbar {
         width: 0;
         height: 0;
@@ -632,6 +633,10 @@
         font-family: 'Satoshi', sans-serif;
     }
 
+    .email-result {
+        font-size: 14px;
+    }
+
     .infos-footer {
         width: 100%;
         height: auto;
@@ -783,25 +788,6 @@
     }
 
 }
-/*-------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (min-width: 780px) {
     .container-page {
@@ -1420,6 +1406,7 @@
         padding: 0 64px;
         box-sizing: border-box;
         gap: 12px;
+        position: relative;
     }
 
     .footer-banner-title {
@@ -1433,6 +1420,8 @@
     .login-confirmation{
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 30%;
         gap: 14px;
     }
@@ -1466,6 +1455,20 @@
 
     .footer-input::placeholder {
         color: #aaaaaa;
+    }
+
+    .success-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(50%, 65%);
+        width: 400px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .email-result {
+        font-size: 18px;
     }
 
     .subscriber-button {

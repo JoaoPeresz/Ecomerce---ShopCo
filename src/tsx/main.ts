@@ -8,6 +8,22 @@ interface Product {
     discount: string;
 }
 
+interface TopicsBrowse {
+    image: string;
+    topic: string;
+}
+
+interface Review {
+    rating: string;
+    name: string;
+    review: string;
+}
+
+interface Options {
+    title: string;
+    options: string[];
+}
+
 const arrivals: Product[] = [
     {
         image: "assets/home-page/T-shirt%20with%20Tape.png",
@@ -86,85 +102,26 @@ const topSelling: Product[] = [
     },
 ];
 
-const renderCards = (products: Product[], containerSelector: string) => {
-    const container = document.querySelector(containerSelector);
-    if (container) {
-        container.innerHTML = products
-            .map((product) => `
-        <article class="container-arrival">
-          <img src="${product.image}" alt="${product.title}" />
-          <h3 class="product-title">${product.title}</h3>
-          <section class="container-rating">
-            <img src="${product.ratingImage}" alt="rating" />
-            <h3>${product.rating}</h3>
-          </section>
-          <section class="container-prices">
-            <h1 class="clothes-price">$${product.price}</h1>
-            ${
-                product.previous > 0
-                    ? `
-              <h2 class="previous-price"><del>$${product.previous}</del></h2>
-              <section class="container-discount">
-                <span class="discount">${product.discount}</span>
-              </section>
-            `
-                    : ''
-            }
-          </section>
-        </article>
-      `)
-            .join("");
-    }
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderCards(arrivals, ".cards-container.arrivals");
-    renderCards(topSelling, ".cards-container.top-selling");
-});
-
-
-interface TopicsBrowse {
-    image: string;
-    topic: string;
-}
-
 const topics: TopicsBrowse[] = [
     {
-        image: "..assets/home-page/topic-casual.png",
+        image: "assets/home-page/topic-casual.png",
         topic: "Casual"
     },
     {
-        image: "..assets/home-page/topic-formal.png",
+        image: "assets/home-page/topic-formal.png",
         topic: "Formal"
     },
     {
-        image: "..assets/home-page/topic-party.png",
+        image: "assets/home-page/topic-party.png",
         topic: "Party"
     },
     {
-        image: "..assets/home-page/topic-gym.png",
+        image: "assets/home-page/topic-gym.png",
         topic: "Gym"
     },
 ]
 
-const renderTopics = () => {
-    const container = document.querySelector(".card-topics-browse");
-
-    if (container) {
-        container.innerHTML = topics.map((topic) => `
-            <section class="container-topics">
-                <img class="topic-image" src=${topic.image}/>
-                <h2 class="topic">${topic.topic}</h2>
-            </section>        
-        `).join("")
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderTopics();
-})
-
-const reviews = [
+const reviews: Review[] = [
     {
         "rating": "assets/home-page/rating-5.png",
         "name": "Emily R.",
@@ -192,69 +149,109 @@ const reviews = [
     }
 ]
 
-const renderGoodReviews = () => {
-    const container = document.querySelector(".container-good-reviews");
-
-    if (container) {
-        container.innerHTML = reviews.map((review) => `
-            <section class="container-box-reviews">
-                <img src=${review.rating}/>
-                <section class="data-reviewr">
-                    <h1 class="title-reviewr">${review.name}</h1>
-                    <img src="assets/home-page/checked.png"/>
-                </section>
-                    <h3 class="review">${review.review}</h3>
-            </section>
-        `).join("")
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderGoodReviews();
-})
-
-const navOptions = [
+const navOptions: Options[] = [
     {
-       title: "COMPANY",
-       options: [
-           "About",
-           "Features",
-           "Works",
-           "Career",
-       ]
+        title: "COMPANY",
+        options: [
+            "About",
+            "Features",
+            "Works",
+            "Career",
+        ]
     }
     ,{
-       title: "HELP",
-       options: [
-           "Customer Support",
-           "Delivery Details",
-           "Terms & Conditions",
-           "Privacy Policy",
-       ]
+        title: "HELP",
+        options: [
+            "Customer Support",
+            "Delivery Details",
+            "Terms & Conditions",
+            "Privacy Policy",
+        ]
     }
     ,{
-       title: "FAQ",
-       options: [
-           "Account",
-           "Manage Deliveries",
-           "Orders",
-           "Payment",
-       ]
+        title: "FAQ",
+        options: [
+            "Account",
+            "Manage Deliveries",
+            "Orders",
+            "Payment",
+        ]
     }
     ,{
-       title: "Resources",
-       options: [
-           "Free eBook",
-           "Development Tutotial",
-           "How to - Blog",
-           "Youtube Playlist",
-       ]
+        title: "Resources",
+        options: [
+            "Free eBook",
+            "Development Tutotial",
+            "How to - Blog",
+            "Youtube Playlist",
+        ]
     },
 ]
 
+document.addEventListener("DOMContentLoaded", () => {
+    renderCards(arrivals, ".cards-container.arrivals");
+    renderCards(topSelling, ".cards-container.top-selling");
+    renderTopics();
+    renderGoodReviews();
+    renderFooterNavs();
+    setupEmailSubscription();
+});
+
+const renderCards = (products: Product[], containerSelector: string) => {
+    const container = document.querySelector(containerSelector);
+    if (container) {
+        container.innerHTML = products.map((product) => `
+            <article class="container-arrival">
+                <img src="${product.image}" alt="${product.title}" />
+                <h3 class="product-title">${product.title}</h3>
+                <section class="container-rating">
+                    <img src="${product.ratingImage}" alt="rating" />
+                    <h3>${product.rating}</h3>
+                </section>
+                <section class="container-prices">
+                    <h1 class="clothes-price">$${product.price}</h1>
+                    ${product.previous > 0 ? `
+                        <h2 class="previous-price"><del>$${product.previous}</del></h2>
+                        <section class="container-discount">
+                          <span class="discount">${product.discount}</span>
+                        </section>
+                    ` : ''}
+                </section>
+            </article>
+        `).join("");
+    }
+};
+
+const renderTopics = () => {
+    const container = document.querySelector(".card-topics-browse");
+    if (container) {
+        container.innerHTML = topics.map((topic) => `
+            <section class="container-topics">
+                <img class="topic-image" src="${topic.image}" alt="topic"/>
+                <h2 class="topic">${topic.topic}</h2>
+            </section>        
+        `).join("");
+    }
+};
+
+const renderGoodReviews = () => {
+    const container = document.querySelector(".container-good-reviews");
+    if (container) {
+        container.innerHTML = reviews.map((review) => `
+            <section class="container-box-reviews">
+                <img src=${review.rating} alt="review"/>
+                <section class="data-reviewr">
+                    <h1 class="title-reviewr">${review.name}</h1>
+                    <img src="assets/home-page/checked.png" alt="image"/>
+                </section>
+                <h3 class="review">${review.review}</h3>
+            </section>
+        `).join("");
+    }
+};
+
 const renderFooterNavs = () => {
     const container = document.querySelector(".footer-nav");
-
     if (container) {
         container.innerHTML = navOptions.map((item) => `
             <section class="container-footer-nav">
@@ -265,10 +262,43 @@ const renderFooterNavs = () => {
                     `).join('')}
                 </ul>
             </section>
-        `).join("")
+        `).join("");
     }
+};
+
+const setupEmailSubscription = () => {
+    let emails: string[] = [];
+    const emailInput = document.querySelector<HTMLInputElement>(".footer-input");
+    const subscribeButton = document.querySelector<HTMLButtonElement>(".subscriber-button");
+
+    if (emailInput && subscribeButton) {
+        subscribeButton.addEventListener("click", () => {
+            const email = emailInput.value.trim();
+            if (email && validateEmail(email)) {
+                if (emails.some(registeredEmail => registeredEmail === email)) {
+                    renderMessage("⚠️Your email is already registered.", "#FFAA00");
+                } else {
+                    emails.push(email);
+                    renderMessage("✅ Your email has been successfully registered!", "#4CAF50");
+                }
+            } else {
+                renderMessage("🚨Please enter a valid email address.", "#F44336");
+            }
+        });
+    }
+};
+
+function validateEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderFooterNavs();
-})
+function renderMessage(message: string, color: string) {
+    const successElement = document.querySelector<HTMLElement>(".message-email");
+    if (successElement) {
+        successElement.innerHTML = `
+            <section class="success-message">
+                <h2 style="color: ${color}" class="email-result">${message}</h2>
+            </section>
+        `;
+    }
+}
