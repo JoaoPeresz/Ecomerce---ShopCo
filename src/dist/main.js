@@ -93,33 +93,6 @@ const topics = [
         topic: "Gym"
     },
 ];
-const reviews = [
-    {
-        "rating": "assets/home-page/rating-5.png",
-        "name": "Emily R.",
-        "review": "Shop.co has completely transformed my shopping experience. The quality, the fit, and the customer service are all top-notch. I can't recommend them enough!"
-    },
-    {
-        "rating": "assets/home-page/rating-5.png",
-        "name": "Sarah M.",
-        "review": "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."
-    },
-    {
-        "rating": "assets/home-page/rating-5.png",
-        "name": "Alex K.",
-        "review": "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions."
-    },
-    {
-        "rating": "assets/home-page/rating-5.png",
-        "name": "James L.",
-        "review": "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."
-    },
-    {
-        "rating": "assets/home-page/rating-5.png",
-        "name": "Olivia T.",
-        "review": "I've never felt more confident in my outfits since shopping at Shop.co. Their pieces are stylish, comfortable, and make me feel amazing every time I wear them!"
-    }
-];
 const navOptions = [
     {
         title: "COMPANY",
@@ -162,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCards(arrivals, ".cards-container.arrivals");
     renderCards(topSelling, ".cards-container.top-selling");
     renderTopics();
-    renderGoodReviews();
     renderFooterNavs();
     setupEmailSubscription();
 });
@@ -198,21 +170,6 @@ const renderTopics = () => {
                 <img class="topic-image" src="${topic.image}" alt="topic"/>
                 <h2 class="topic">${topic.topic}</h2>
             </section>        
-        `).join("");
-    }
-};
-const renderGoodReviews = () => {
-    const container = document.querySelector(".container-good-reviews");
-    if (container) {
-        container.innerHTML = reviews.map((review) => `
-            <section class="container-box-reviews">
-                <img src=${review.rating} alt="review"/>
-                <section class="data-reviewr">
-                    <h1 class="title-reviewr">${review.name}</h1>
-                    <img src="assets/home-page/checked.png" alt="image"/>
-                </section>
-                <h3 class="review">${review.review}</h3>
-            </section>
         `).join("");
     }
 };
@@ -266,3 +223,31 @@ function renderMessage(message, color) {
         `;
     }
 }
+const carouselContainer = document.getElementById('carousel-container');
+const [arrowLeft, arrowRight] = document.querySelectorAll('.arrows-happy-customers img');
+const CARD_OFFSET = 420;
+const TRANSITION = 'transform 0.5s ease';
+let currentCards = [0, 1, 2, 3, 4];
+const cards = Array.from(carouselContainer.children);
+const reorganizeCarousel = (newOrder) => {
+    carouselContainer.replaceChildren(...newOrder.map(i => cards[i]));
+};
+const rotateCarousel = (direction) => {
+    const translateX = direction === 'next' ? -CARD_OFFSET : CARD_OFFSET;
+    carouselContainer.style.transition = TRANSITION;
+    carouselContainer.style.transform = `translateX(${translateX}px)`;
+    const onTransitionEnd = () => {
+        carouselContainer.removeEventListener('transitionend', onTransitionEnd);
+        currentCards = direction === 'next'
+            ? [...currentCards.slice(1), currentCards[0]]
+            : [currentCards[4], ...currentCards.slice(0, 4)];
+        reorganizeCarousel(currentCards);
+        carouselContainer.style.transition = 'none';
+        carouselContainer.style.transform = 'translateX(0)';
+        void carouselContainer.offsetHeight;
+        carouselContainer.style.transition = TRANSITION;
+    };
+    carouselContainer.addEventListener('transitionend', onTransitionEnd);
+};
+arrowRight.addEventListener('click', () => rotateCarousel('next'));
+arrowLeft.addEventListener('click', () => rotateCarousel('previous'));
