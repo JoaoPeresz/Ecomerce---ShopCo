@@ -132,12 +132,51 @@ const navOptions = [
     },
 ];
 document.addEventListener("DOMContentLoaded", () => {
+    removePromo();
+    goToSignUp();
+    ShopNow();
     renderCards(arrivals, ".cards-container.arrivals");
     renderCards(topSelling, ".cards-container.top-selling");
     renderTopics();
     renderFooterNavs();
     setupEmailSubscription();
 });
+const removePromo = () => {
+    const deleteButton = document.getElementById("close");
+    const elemento = document.querySelector(".promo-banner");
+    deleteButton.addEventListener("click", () => {
+        elemento.remove();
+    });
+};
+function goToSignUp() {
+    var signUpButton = document.getElementById("sign-up");
+    var bannerFooter = document.getElementById("bannerFooter");
+    if (signUpButton && bannerFooter) {
+        signUpButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            bannerFooter.scrollIntoView({ behavior: "smooth", block: "end" });
+            setTimeout(function () {
+                bannerFooter.setAttribute("tabindex", "-1");
+                bannerFooter.focus();
+            }, 500);
+        });
+    }
+}
+
+function ShopNow() {
+    var shopNowButton = document.getElementById("shopNow");
+    var clothes = document.getElementById("clothes");
+    if (shopNowButton && clothes) {
+        shopNowButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            clothes.scrollIntoView({ behavior: "smooth", block: "end" });
+            setTimeout(function () {
+                clothes.setAttribute("tabindex", "-1");
+                clothes.focus();
+            }, 500);
+        });
+    }
+}
 const renderCards = (products, containerSelector) => {
     const container = document.querySelector(containerSelector);
     if (container) {
@@ -213,7 +252,7 @@ const setupEmailSubscription = () => {
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-function renderMessage(message, color) {
+const renderMessage = (message, color) => {
     const successElement = document.querySelector(".message-email");
     if (successElement) {
         successElement.innerHTML = `
@@ -222,7 +261,7 @@ function renderMessage(message, color) {
             </section>
         `;
     }
-}
+};
 const carouselContainer = document.getElementById('carousel-container');
 const [arrowLeft, arrowRight] = document.querySelectorAll('.arrows-happy-customers img');
 const CARD_OFFSET = 420;

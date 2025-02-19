@@ -1,4 +1,4 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
     .container-page {
         width: 100%;
         height: 100vh;
@@ -208,18 +208,18 @@
 
     .right-up-star {
         position: absolute;
-        top: 40px;
+        bottom: 332px;
         right: 20px;
-        width: 50px;
-        height: 50px;
+        width: 76px;
+        height: 76px;
     }
 
     .left-center-star {
         position: absolute;
-        bottom: 40px;
+        bottom: 267px;
         left: 20px;
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
     }
 
     .brands-banner {
@@ -240,6 +240,8 @@
         gap: 2rem;
         flex-wrap: wrap;
         justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
     .companies-image {
@@ -790,7 +792,7 @@
 
 }
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 1081px) {
     .container-page {
         width: 100%;
         height: 100vh;
@@ -804,11 +806,13 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        overflow: auto;
     }
 
     .promo-banner {
         width: 100%;
         height: 38px;
+        padding: 10px 0;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -882,6 +886,13 @@
         margin: 0;
     }
 
+    .menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+
     .menu-item a {
         text-decoration: none;
         color: black;
@@ -905,6 +916,7 @@
     }
 
     .user-container {
+        margin-left: 16px;
         width: 62px;
         display: flex;
         justify-content: space-between;

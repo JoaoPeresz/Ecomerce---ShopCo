@@ -161,12 +161,60 @@ const navOptions: Options[] = [
 ]
 
 document.addEventListener("DOMContentLoaded", () => {
+    removePromo();
+    goToSignUp();
+    ShopNow();
     renderCards(arrivals, ".cards-container.arrivals");
     renderCards(topSelling, ".cards-container.top-selling");
     renderTopics();
     renderFooterNavs();
     setupEmailSubscription();
 });
+
+const removePromo = () => {
+    const deleteButton = document.getElementById("close") as HTMLElement;
+    const elemento = document.querySelector(".promo-banner") as HTMLElement;
+
+    deleteButton.addEventListener("click", () => {
+        elemento.remove();
+    });
+};
+
+function goToSignUp() {
+    var signUpButton = document.getElementById("sign-up");
+    var bannerFooter = document.getElementById("bannerFooter") as HTMLElement;
+
+    if (signUpButton && bannerFooter) {
+        signUpButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            bannerFooter.scrollIntoView({behavior: "smooth", block: "end"});
+
+            setTimeout(function () {
+                bannerFooter.setAttribute("tabindex", "-1");
+                bannerFooter.focus();
+            }, 500);
+        });
+    }
+}
+
+function ShopNow () {
+    var shopNowButton = document.getElementById("shopNow") as HTMLElement;
+    var clothes = document.getElementById("clothes") as HTMLElement;
+
+    if (shopNowButton && clothes) {
+        shopNowButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            clothes.scrollIntoView({behavior: "smooth", block: "end"});
+
+            setTimeout(function () {
+                clothes.setAttribute("tabindex", "-1");
+                clothes.focus();
+            }, 500);
+        });
+    }
+}
 
 const renderCards = (products: Product[], containerSelector: string) => {
     const container = document.querySelector(containerSelector);
@@ -247,7 +295,7 @@ function validateEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function renderMessage(message: string, color: string) {
+const renderMessage = (message: string, color: string) => {
     const successElement = document.querySelector<HTMLElement>(".message-email");
     if (successElement) {
         successElement.innerHTML = `
